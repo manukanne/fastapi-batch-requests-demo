@@ -1,3 +1,4 @@
+import asyncio
 from typing import List
 
 import aiohttp
@@ -37,11 +38,13 @@ class BatchProcessor:
         )
 
     async def process(self, batch_requests: List[BatchRequest]) -> List[BatchResponse]:
-        ret = []
+
+        tasks = []
         for req in batch_requests:
-            result = await self._handle_request(req)
-            ret.append(result)
-        return ret
+            task = asyncio.ensure_future(self._handle_request(req))
+            tasks.append(task)
+
+        return await asyncio.gather(*tasks)
 
 
 router = APIRouter(prefix="/batch")
