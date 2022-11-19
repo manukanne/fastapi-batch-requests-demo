@@ -1,5 +1,6 @@
 # FastAPI Batch Tutorial
 This repository contains a possible implementation of a batch route using FastAPI.
+For more details, please check out my blog post on [dev.to](https://dev.to/manukanne/implement-a-batch-route-using-fastapi-444d)
 
 ## Description
 - Json based batching - The data is exchanged using the MIME type application/json, this approach is 
